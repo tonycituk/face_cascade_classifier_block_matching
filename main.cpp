@@ -55,9 +55,10 @@ static bool loadCascadeAuto(CascadeClassifier& cc, const string& fileName, strin
 
 int main() {
     const string FACE_FILE = "haarcascade_frontalface_alt.xml";
-    const string EYES_FILE = "haarcascade_eye_tree_eyeglasses.xml";
+    //const string EYES_FILE = "haarcascade_eye_tree_eyeglasses.xml";
 
-    string facePath, eyesPath;
+    string facePath;
+    //string eyesPath;
 
     cout << "Cargando cascadas...\n";
     if (!loadCascadeAuto(face_cascade, FACE_FILE, facePath)) {
@@ -65,13 +66,13 @@ int main() {
         cerr << "   Revisa que OpenCV esté instalado (Homebrew) y que existan los XML.\n";
         return -1;
     }
-    if (!loadCascadeAuto(eyes_cascade, EYES_FILE, eyesPath)) {
+    /*if (!loadCascadeAuto(eyes_cascade, EYES_FILE, eyesPath)) {
         cerr << "--(!) No se pudo cargar la cascade de ojos: " << EYES_FILE << "\n";
         return -1;
-    }
+    }*/
 
     cout << "Usando face cascade: " << facePath << "\n";
-    cout << "Usando eyes cascade: " << eyesPath << "\n";
+    //cout << "Usando eyes cascade: " << eyesPath << "\n";
 
     int camera_device = 0; // por defecto, cámara 0
     VideoCapture capture;
@@ -111,7 +112,7 @@ void detectAndDisplay(Mat frame) {
 
         rectangle(frame, p1, p2, Scalar(255, 0, 255), 4);
         //ellipse(frame, center, Size(faces[i].width/2, faces[i].height/2), 0, 0, 360, Scalar(255, 0, 255), 4);
-        Mat faceROI = frame_gray(faces[i]);
+        //Mat faceROI = frame_gray(faces[i]);
 
         // Detectar ojos en cada rostro
         /*vector<Rect> eyes;
